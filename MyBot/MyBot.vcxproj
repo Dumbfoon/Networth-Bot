@@ -147,6 +147,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/wd4251 /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\MyBot\dependencies\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,6 +172,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalOptions>/wd4251 /utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\MyBot\dependencies\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,6 +192,18 @@
     <ClCompile Include="MyBot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dependencies\include\curl\curl.h" />
+    <ClInclude Include="dependencies\include\curl\curlver.h" />
+    <ClInclude Include="dependencies\include\curl\easy.h" />
+    <ClInclude Include="dependencies\include\curl\header.h" />
+    <ClInclude Include="dependencies\include\curl\mprintf.h" />
+    <ClInclude Include="dependencies\include\curl\multi.h" />
+    <ClInclude Include="dependencies\include\curl\options.h" />
+    <ClInclude Include="dependencies\include\curl\stdcheaders.h" />
+    <ClInclude Include="dependencies\include\curl\system.h" />
+    <ClInclude Include="dependencies\include\curl\typecheck-gcc.h" />
+    <ClInclude Include="dependencies\include\curl\urlapi.h" />
+    <ClInclude Include="dependencies\include\curl\websockets.h" />
     <ClInclude Include="dependencies\include\dpp-10.1\dpp\appcommand.h" />
     <ClInclude Include="dependencies\include\dpp-10.1\dpp\application.h" />
     <ClInclude Include="dependencies\include\dpp-10.1\dpp\auditlog.h" />
@@ -283,6 +297,10 @@
     <ClInclude Include="dependencies\include\dpp-10.1\dpp\wsclient.h" />
     <ClInclude Include="dependencies\include\dpp-10.1\dpp\zlibcontext.h" />
     <ClInclude Include="MyBot.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dependencies\include\curl\Makefile.am" />
+    <None Include="dependencies\include\curl\Makefile.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

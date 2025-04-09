@@ -1,5 +1,38 @@
 #include "MyBot.h"
+#include <curl/curl.h>
 #include <dpp/dpp.h>
+#include <urlmon.h>
+#include <windows.h>
+#include <iostream>
+#include <memory>
+#include <string>
+
+#pragma comment(lib, "urlmon.lib")
+
+struct StreamDeleter {
+    void operator()(IStream* p) const { if (p) p->Release(); }
+};
+
+std::string DownloadUrlContent(const std::wstring& url) {
+    std::unique_ptr<IStream, StreamDeleter> stream;
+    IStream* tempStream = nullptr;
+
+    if (SUCCEEDED(URLOpenBlockingStream(nullptr, url.c_str(), &tempStream, 0, nullptr))) {
+        stream.reset(tempStream);
+
+        std::string content;
+        char buffer[4096];
+        ULONG bytesRead = 0;
+
+        while (SUCCEEDED(stream->Read(buffer, sizeof(buffer), &bytesRead)) && bytesRead > 0) {
+            content.append(buffer, bytesRead);
+        }
+
+        return content;
+    }
+
+    return "";
+}
 
 const std::string BOT_TOKEN = "<enter token here>";
 
@@ -29,6 +62,7 @@ int main()
             newcommand.add_option(
                 dpp::command_option(dpp::co_string, "username", "IGN of person", true)
             );
+            dpp::slashcommand command2("viktor", "viktor rex", bot.me.id);
 
             bot.global_command_create(newcommand);
         }
