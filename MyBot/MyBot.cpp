@@ -10,6 +10,9 @@
  */
 const std::string    BOT_TOKEN    = "add your token here";
 
+
+//viktor rex the goat
+
 int main()
 {
 	/* Create bot cluster */
